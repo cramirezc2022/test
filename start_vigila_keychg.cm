@@ -1,0 +1,6 @@
+& Macro que levanta el demonio n$VIGILA_KEYCHG
+
+!stop_process n$VIGILA_KEYCHG -user * -no_ask
+&if (exists logs>n$VIGILA_KEYCHG.out ) &then !rename logs>n$VIGILA_KEYCHG.out n$VIGILA_KEYCHG.out.old -delete
+!sleep -seconds 3
+!start_process 'on2_start_up.cm;vigila_keychg.pm 1' -process_name n$VIGILA_KEYCHG -output_path logs>n$VIGILA_KEYCHG.out -current_dir (current_dir) -privileged
